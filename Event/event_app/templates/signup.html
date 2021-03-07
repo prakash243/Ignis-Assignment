@@ -1,0 +1,48 @@
+
+{% extends "navbar.html" %}
+
+{% block title%} <title>Sign Up</title> {% endblock %}
+
+{% block style %}
+<style>
+   
+    .heart {
+      color: red;
+            }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+<form action=" {% url 'signup' %} " class="signup" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="First name" name="first_name"  required />
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Last Name" name="last_name" />
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" name="username" required />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Email Address" name="email" required />
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Password" name="password1" required />
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Confirm password" name="password2" required />
+    </div>
+    <div class="field btn">
+      <div class="btn-layer"></div>
+      <input type="submit" value="Signup" />
+
+    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+
+    </div>
+  </form>
+
+  {% endblock %}

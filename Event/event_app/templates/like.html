@@ -1,0 +1,59 @@
+{% extends "navbar.html" %}
+
+    {% block title%} <title>Liked Events</title> {% endblock %}
+
+    {% block style %}
+    <style>
+       
+        .heart {
+          color: red;
+                }
+        </style>
+    {% endblock %}
+
+  
+
+{% block body %}
+
+        <h1>Likes</h1>
+        {% for event in liked_event %}
+        
+        
+        <div class="card container">
+            <div class="row">
+                <div class="col-md-4"><img src="{{event.image.url}}" alt="" width="200" height="200">
+                </div>
+            
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.event_name}}</h5>
+                    <p class="card-text">{{event.date_time}}</p>
+                   
+
+                    <p class="card-text">{{event.location}}</p>
+                    
+                  </div>
+            </div>
+            <div class="col-md-2">
+                {% if user.is_authenticated %}
+            <form action="{% url 'unlike' %}" method="POST" style="display: inline-block;">
+              {% csrf_token %}
+              <input type="hidden" name="unliked_id" >
+              <button style="border-style: none; cursor: pointer;" ><i title="Add to favourite" class="fa fa-heart heart" style="pointer-events: fill;" ></i></button>
+
+            </form>
+            <!-- <center><button style="border:0px" value="" id="liked" onclick=""><i id="" class="fas fa-heart heart" ></i></button></center> -->
+    
+            {% endif %}      
+        </div>
+        </div>
+        </div>
+        <br>
+    
+        {% endfor %}
+
+    {% endblock %}
+
+
+
+    {% block js %}  {% endblock %}    

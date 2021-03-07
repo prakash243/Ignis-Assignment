@@ -1,0 +1,43 @@
+{% extends 'navbar.html' %}
+
+{% block title %} Search {% endblock %}
+
+{% block body %}
+<div class="container mt-2">
+    <h2>Event name with  "{{search_event}}"</h2><hr>
+    <div class="row" style="display: flex; justify-content: space-evenly;">
+{% if searched_event %}
+
+<div class="container">
+    <div class="row" style="display: flex; justify-content:flex-start;">
+
+        {% for event in searched_event %}
+
+            <div class="card"  style="width: 18rem; margin-left: 10px; margin-bottom: 10px;">
+                <img src="/media/{{event.image}}" alt="" width="200" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.event_name}}</h5>
+                    <p class="card-text">{{event.date_time}}</p>
+                    <p class="card-text">{{event.location}}</p>
+                    
+                  </div>
+            
+        
+              <!-- <button style="border-style: none; cursor: pointer;" ><i title="Add to favourite" class="fa fa-heart heart" style="pointer-events: fill;" ></i></button>
+            </form> -->
+         
+        </div>
+        {% endfor %}
+
+    </div>
+       
+
+       
+        </div>
+      {% else %}  
+  <h4>Not Found for "{{search_event}}"</h4>
+  
+{% endif %}
+</div>
+
+{% endblock %}

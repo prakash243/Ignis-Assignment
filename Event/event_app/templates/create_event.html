@@ -1,0 +1,65 @@
+{% extends "navbar.html" %}
+
+    {% block title%} <title>Create Events</title> {% endblock %}
+
+    {% block style %}
+    <style>
+       
+        .heart {
+          color: red;
+                }
+        </style>
+    {% endblock %}
+
+  
+
+{% block body %}
+
+        <h1>Create Events</h1>
+        <div class="container">
+            <form action="{% url 'create_event' %}" method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+             
+                <div class="form-group">
+                  <label for="event_name">Event Name</label>
+                  <input type="text" id="event_name" name="event_name" class="form-control" placeholder="">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="descriptions">Desciptions</label>
+                    <input type="text" id="descriptions" name="data" class="form-control"  placeholder="">
+                  
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="datetime-local" id="date" name="date_time" class="form-control"  placeholder="">
+                  </div>
+
+                  
+                <div class="form-group">
+                    <label for="location">Venue</label>
+                    <input type="text" id="location" name="location"  class="form-control"  placeholder="">
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="image">Event image</label>
+                    <input type="file" name="image" id="image" class="form-control" placeholder="Event image">
+                  </div>
+              <center><button type="submit" class="btn btn-warning ml-2">Create</button></center>
+              
+            </form>
+            <!-- <center><button style="border:0px" value="" id="liked" onclick=""><i id="" class="fas fa-heart heart" ></i></button></center> -->
+        
+        </div>
+        </div>
+        </div>
+    </div>
+        <br>
+   
+
+    {% endblock %}
+
+
+
+    {% block js %}  {% endblock %}    

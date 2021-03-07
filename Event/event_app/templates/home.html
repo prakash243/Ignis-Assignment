@@ -1,0 +1,63 @@
+{% extends "navbar.html" %}
+
+    {% block title%} <title>Home</title> {% endblock %}
+
+    {% block style %}
+    <style>
+       
+        .heart {
+          color: red;
+                }
+        </style>
+    {% endblock %}
+
+  
+
+{% block body %}
+
+        <h1>Events  </h1>
+        <small>Total Events= {{total}}</small>
+        <div class="container">
+            <div class="row" style="display: flex; justify-content:flex-start;">
+                
+        {% for event in all_event %}
+        
+
+                    <div class="card"  style="width: 18rem; margin-left: 10px; margin-bottom: 10px;">
+                        <img src="{{event.image.url}}" alt="" width="200" height="200">
+                        <div class="card-body">
+                            <h5 class="card-title">{{event.event_name}}</h5>
+                            <p class="card-text">{{event.date_time}}</p>
+                            <p class="card-text">{{event.location}}</p>
+                            
+                          </div>
+                    
+                {% if user.is_authenticated %}
+                    <form action="{% url 'like' %}" method="POST" style="display: inline-block;">
+                      {% csrf_token %}
+                      <input type="hidden" name="liked_id" value="{{event.event_id}}">
+    
+              <!-- <button style="border-style: none; cursor: pointer;" ><i title="Add to favourite" class="fa fa-heart" style="pointer-events: fill;" ></i></button> -->
+     
+              <button type="submit" style="border-style: none; cursor: pointer;" ><i title="Added to favourite" class="fa fa-heart" style="pointer-events: fill;" ></i></button>
+                    {% endif %}
+                    </form> 
+                 
+                </div>
+
+                 
+        {% endfor %}
+        
+               
+
+               
+                </div>
+        
+        
+    
+
+    {% endblock %}
+
+
+
+    {% block js %}  {% endblock %}    
